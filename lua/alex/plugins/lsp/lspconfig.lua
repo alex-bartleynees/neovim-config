@@ -4,11 +4,12 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
-    { "folke/neodev.nvim", opts = {} },
+    { "folke/neodev.nvim",                   opts = {} },
   },
   config = function()
     -- import lspconfig plugin
     local lspconfig = require("lspconfig")
+    local util = require('lspconfig.util')
 
     -- import mason_lspconfig plugin
     local mason_lspconfig = require("mason-lspconfig")
@@ -100,6 +101,14 @@ return {
           end,
         })
       end,
+      ["angularls"] = function()
+        -- configure angularls server
+        lspconfig["angularls"].setup({
+            root_dir = util.root_pattern("angular.json", "project.json"),
+            capabilities = capabilities,
+            -- Other configuration options here
+        })
+    end,
       ["graphql"] = function()
         -- configure graphql language server
         lspconfig["graphql"].setup({
