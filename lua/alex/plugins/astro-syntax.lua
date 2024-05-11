@@ -1,3 +1,4 @@
 return {
-  'wuelnerdotexe/vim-astro'
+  'wuelnerdotexe/vim-astro',
+  event = { "BufReadPre", "BufNewFile" },
 }
