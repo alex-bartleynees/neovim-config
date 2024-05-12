@@ -1,9 +1,12 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
+  "dlvandenberg/nvim-treesitter",
+  -- "nvim-treesitter/nvim-treesitter",
   event = { "BufReadPre", "BufNewFile" },
   build = ":TSUpdate",
   dependencies = {
     "windwp/nvim-ts-autotag",
+    { "nvim-treesitter/nvim-treesitter-textobjects" },
+    { "nvim-treesitter/playground" },
   },
   config = function()
     -- import nvim-treesitter plugin
@@ -22,6 +25,7 @@ return {
       },
       -- ensure these language parsers are installed
       ensure_installed = {
+        "angular",
         "json",
         "javascript",
         "typescript",
@@ -43,6 +47,9 @@ return {
         "vimdoc",
         "c",
       },
+
+      sync_install = false,
+      auto_install = true,
       incremental_selection = {
         enable = true,
         keymaps = {
