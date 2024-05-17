@@ -6,6 +6,9 @@ return {
     { "antosha417/nvim-lsp-file-operations", config = true },
     { "folke/neodev.nvim",                   opts = {} },
   },
+  opts = {
+    inlay_hints = { enabled = true },
+  },
   config = function()
     -- import lspconfig plugin
     local lspconfig = require("lspconfig")
@@ -104,11 +107,11 @@ return {
       ["angularls"] = function()
         -- configure angularls server
         lspconfig["angularls"].setup({
-            root_dir = util.root_pattern("angular.json", "project.json"),
-            capabilities = capabilities,
-            -- Other configuration options here
+          root_dir = util.root_pattern("angular.json", "project.json"),
+          capabilities = capabilities,
+          -- Other configuration options here
         })
-    end,
+      end,
       ["graphql"] = function()
         -- configure graphql language server
         lspconfig["graphql"].setup({
