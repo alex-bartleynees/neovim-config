@@ -38,7 +38,7 @@ return {
         "prismals",
         "pyright",
         "angularls",
-        "astro"
+        "astro",
       },
     })
 

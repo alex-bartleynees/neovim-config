@@ -37,7 +37,7 @@ return {
         keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
 
         opts.desc = "Show LSP definitions"
-        keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+        keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- show lsp definitions
 
         opts.desc = "Show LSP implementations"
         keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
@@ -102,6 +102,16 @@ return {
               end,
             })
           end,
+        })
+      end,
+      ["csharp_ls"] = function()
+        -- configure cs server
+        lspconfig["csharp_ls"].setup({
+          capabilities = capabilities,
+          handlers = {
+            ["textDocument/definition"] = require('csharpls_extended').handler,
+            ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
+          },
         })
       end,
       ["angularls"] = function()
