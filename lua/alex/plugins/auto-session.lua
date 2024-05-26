@@ -1,7 +1,8 @@
 local function restore_nvim_tree()
   local nvim_tree = require('nvim-tree')
+  local api = require('nvim-tree.api')
   nvim_tree.change_dir(vim.fn.getcwd())
-  nvim_tree.refresh()
+  api.tree.focus()
 end
 
 return {
@@ -12,7 +13,7 @@ return {
     auto_session.setup({
       auto_restore_enabled = true,
       auto_session_suppress_dirs = { "~/", "~/Dev/", "~/Downloads", "~/Documents", "~/Desktop/" },
-      _cmds = { "{vim_cmd_1}", restore_nvim_tree, "{vim_cmd_2}" },
+      post_restore_cmds = { restore_nvim_tree },
     })
 
     local keymap = vim.keymap
